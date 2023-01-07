@@ -1,4 +1,37 @@
+html {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
 #display {
-    width: 100px;
+    display: flex;
+    width: 400px;
     height: 100px;
+    border: solid;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 50px;
+}
+
+#buttons {
+    border: solid;
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button_row {
+    display: flex;
+    width: 400px;
+    height: 150px;
+    flex-direction: row;
+    justify-content: space-evenly; 
+}
+
+button {
+    margin: 0;
+    flex-grow: 1;
+    flex-basis: 1;
 }
