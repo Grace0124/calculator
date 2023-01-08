@@ -18,15 +18,29 @@ function operate(operator, x, y) {
     return operator(x, y);
 }
 
-function updateNumbers(char, storedNum, currentNum, displayDiv) {
+function updateNumbers(char, storedNum, currentNum, displayDiv, operator) {
+    let storedNumString;
+    let currentNumString;
     if (storedNum == undefined) {
-        storedNum = char;
-        displayDiv.textContent = storedNum;
+        storedNumString = ''; 
     } else {
-        currentNum = char;
-        displayDiv.textContent = `${storedNum} ${operatorIcon} ${currentNum}`;
+        storedNumString = storedNum.toString();
+    }
+
+    if (currentNum == undefined || Number.isNaN(currentNum)) {
+        currentNumString = '';
+    } else {
+        currentNumString = currentNum.toString();
+    }
+
+    if (operator == undefined) {
+        storedNumString += char.toString();
+        displayDiv.textContent = storedNumString;
+    } else {
+        currentNumString += char.toString();
+        displayDiv.textContent = `${storedNum} ${operatorIcon} ${currentNumString}`;
     };
-    return [storedNum, currentNum];
+    return [parseInt(storedNumString), parseInt(currentNumString)];
 } 
 
 const displayDiv = document.querySelector("#display");
@@ -49,28 +63,29 @@ const clear = document.getElementById("clear");
 
 let storedNum;
 let currentNum;
+
 let operator;
 let result;
 let operatorIcon;
 
 one.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(1, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(1, storedNum, currentNum, displayDiv, operator);
 })
 
 two.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(2, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(2, storedNum, currentNum, displayDiv, operator);
 })
 
 three.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(3, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(3, storedNum, currentNum, displayDiv, operator);
 })
 
 four.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(4, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(4, storedNum, currentNum, displayDiv, operator);
 })
 
 five.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(5, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(5, storedNum, currentNum, displayDiv, operator);
 })
 
 six.addEventListener("click", function() {
@@ -124,4 +139,5 @@ equal.addEventListener("click", function() {
     result = operate(operator, storedNum, currentNum);
     displayDiv.textContent = result;
     storedNum = result;
+    operator = undefined;
 } )
