@@ -89,41 +89,65 @@ five.addEventListener("click", function() {
 })
 
 six.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(6, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(6, storedNum, currentNum, displayDiv, operator);
 })
 
 seven.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(7, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(7, storedNum, currentNum, displayDiv, operator);
 })
 
 eight.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(8, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(8, storedNum, currentNum, displayDiv, operator);
 })
 
 nine.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(9, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(9, storedNum, currentNum, displayDiv, operator);
 })
 
 zero.addEventListener("click", function() {
-    [storedNum, currentNum] = updateNumbers(0, storedNum, currentNum, displayDiv);
+    [storedNum, currentNum] = updateNumbers(0, storedNum, currentNum, displayDiv, operator);
 })
 
 add.addEventListener("click", function() {
+    if (operator != undefined) {
+        result = operate(operator, storedNum, currentNum);
+        displayDiv.textContent = result;
+        storedNum = result;
+        currentNum = undefined;
+    }
     operator = addition;
     operatorIcon = '+';
 })
 
 subtract.addEventListener("click", function() {
+    if (operator != undefined) {
+        result = operate(operator, storedNum, currentNum);
+        displayDiv.textContent = result;
+        storedNum = result;
+        currentNum = undefined;
+    }
     operator = subtraction;
     operatorIcon = '-';
 })
 
 divide.addEventListener("click", function() {
+    if (operator != undefined) {
+        result = operate(operator, storedNum, currentNum);
+        displayDiv.textContent = result;
+        storedNum = result;
+        currentNum = undefined;
+    }
     operator = division;
     operatorIcon = '÷'
 })
 
 multiply.addEventListener("click", function() {
+    if (operator != undefined) {
+        result = operate(operator, storedNum, currentNum);
+        displayDiv.textContent = result;
+        storedNum = result;
+        currentNum = undefined;
+    }
     operator = multiplication;
     operatorIcon = 'x';
 })
