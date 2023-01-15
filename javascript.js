@@ -43,7 +43,7 @@ function updateNumbers(char, storedNum, currentNum, displayDiv, operator) {
     return [parseInt(storedNumString), parseInt(currentNumString)];
 } 
 
-const displayDiv = document.querySelector("#display");
+const displayDiv = document.querySelector("#text");
 const one = document.getElementById("1");
 const two = document.getElementById("2");
 const three = document.getElementById("3");
