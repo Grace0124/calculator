@@ -21,6 +21,7 @@ function operate(operator, x, y) {
 function updateNumbers(char, storedNum, currentNum, displayDiv, operator) {
     let storedNumString;
     let currentNumString;
+
     if (storedNum == undefined) {
         storedNumString = ''; 
     } else {
@@ -34,13 +35,28 @@ function updateNumbers(char, storedNum, currentNum, displayDiv, operator) {
     }
 
     if (operator == undefined) {
-        storedNumString += char.toString();
-        displayDiv.textContent = storedNumString;
+        if (decimal_on === true) {
+            storedNumString += '.';
+            storedNumString += char.toString();
+            displayDiv.textContent = storedNumString;
+            decimal_on = false;
+        } else {
+            storedNumString += char.toString();
+            displayDiv.textContent = storedNumString;
+        }
+        
     } else {
-        currentNumString += char.toString();
-        displayDiv.textContent = `${storedNum} ${operatorIcon} ${currentNumString}`;
+        if (decimal_on === true) {
+            currentNumString += '.';
+            currentNumString += char.toString();
+            displayDiv.textContent = `${storedNum} ${operatorIcon} ${currentNumString}`;
+        } else {
+            currentNumString += char.toString();
+            displayDiv.textContent = `${storedNum} ${operatorIcon} ${currentNumString}`;
+        }
+        
     };
-    return [parseInt(storedNumString), parseInt(currentNumString)];
+    return [parseFloat(storedNumString), parseFloat(currentNumString)];
 } 
 
 const displayDiv = document.querySelector("#text");
@@ -60,6 +76,7 @@ const multiply = document.getElementById("×");
 const divide = document.getElementById("÷");
 const equal = document.getElementById("=");
 const clear = document.getElementById("clear");
+const decimal = document.getElementById("decimal");
 
 let storedNum;
 let currentNum;
@@ -67,6 +84,7 @@ let currentNum;
 let operator;
 let result;
 let operatorIcon;
+let decimal_on = false;
 
 one.addEventListener("click", function() {
     [storedNum, currentNum] = updateNumbers(1, storedNum, currentNum, displayDiv, operator);
@@ -106,6 +124,10 @@ nine.addEventListener("click", function() {
 
 zero.addEventListener("click", function() {
     [storedNum, currentNum] = updateNumbers(0, storedNum, currentNum, displayDiv, operator);
+})
+
+decimal.addEventListener("click", function() {
+    decimal_on = true;
 })
 
 add.addEventListener("click", function() {
